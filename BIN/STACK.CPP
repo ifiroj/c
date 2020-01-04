@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#define size 10
+
+struct stack{
+	int top;
+	int data[size];
+};
+
+void push(struct stack *s){
+	if(s->top==size-1)
+		printf("\nStack is full.");
+	else{
+		++(s->top);
+		printf("\nenter data to be pushed : ");
+		scanf("%d",&s->data[s->top]);
+	       //printf("\n%d is pushed into stack.",s->data[s->top]);
+	}
+}
+
+void pop(struct stack *s){
+	if(s->top==-1)
+		printf("\nStack is empty.");
+	else{
+		printf("\n%d is popped from the stack\n",s->data[s->top]);
+		--(s->top);
+	}
+}
+
+void view(struct stack s){
+	int i;
+	if(s.top==-1)
+		printf("\nStack is empty.");
+	else{
+		printf("\n");
+		for(i=s.top;i>=0;--i){
+			printf("%d ",s.data[i]);
+		}
+	}
+}
+
+int main(){
+	clrscr();
+
+	struct stack s;
+	s.top=-1;
+	int choice;
+	while(1){
+		printf("\nSelect an option : ");
+		printf("\n1. Push");
+		printf("\n2. Pop");
+		printf("\n3. View");
+		printf("\n4. Exit\n");
+		scanf("%d",&choice);
+
+		switch(choice){
+			case 1: clrscr();
+				push(&s);
+				break;
+
+			case 2: clrscr();
+				pop(&s);
+				break;
+
+			case 3: clrscr();
+				view(s);
+				break;
+
+			case 4:
+				exit(0);
+
+			default:
+				printf("\nInvalid option.");
+				break;
+
+		}
+		//break;
+	}
+
+	getch();
+	return 0;
+}

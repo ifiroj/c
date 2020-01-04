@@ -1,0 +1,21 @@
+#include<stdio.h>
+#include<conio.h>
+int main(){
+	//clrscr();
+	int a,b,c,d;
+
+	printf("enter three angles of a triangle : ");
+	scanf("%d%d%d",&a,&b,&c);
+
+	d=a+b+c;
+
+	if(d>180)
+	printf("%d is not valid",d);
+
+	else
+	printf("%d is valid",d);
+
+	getch();
+	return 0;
+
+}

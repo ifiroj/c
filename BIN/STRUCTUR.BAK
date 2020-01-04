@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<conio.h>
+
+struct TELEPHONE{
+	char name[25];
+	char phone_number[15];
+	char address[30];
+}s;
+int main(){
+	struct TELEPHONE ;
+	clrscr();
+
+	printf("enter name : ");
+	scanf("%[^\n]s",s.name);
+
+	printf("enter number : ");
+	scanf("%[^\n]s",s.phone_number);
+
+	printf("enter address : ");
+	scanf("%[^\n]s",s.address);
+
+	printf("\n user name : %s",s.name);
+	printf("\n phone number : %s",s.phone_number);
+	printf("\n address : %s",s.address);
+
+	getch();
+	return 0;
+}

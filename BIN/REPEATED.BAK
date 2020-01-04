@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<conio.h>
+int main(){
+	int n,i,num[10],j,count=0;
+	clrscr();
+
+	printf("numbers to enter ? ");
+	scanf("%d",&n);
+
+	printf("enter %d number: ",n);
+	for(i=0;i<n;i++){
+		scanf("%d",&num[i]);
+	}
+
+	for(i=0;i<n;i++){
+	printf("\nthe numbers are %d",num[i]);
+		for(j=i;j<num[i];j++){
+		if(num[i]==num[j])
+		count++;
+		break;
+		}
+	}
+	printf("\n%d is repeated %d times",num[j],count);
+
+	getch();
+	return 0;
+}

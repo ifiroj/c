@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<conio.h>
+int main(){
+	clrscr();
+	int amount;
+	int b=0,c=0,d=0,e=0,f=0;
+	int g=0,h=0,i=0,j=0,k=0;
+	int n1=1,n2=2,n3=5,n4=10,n5=20;
+	int n6=50,n7=100,n8=250,n9=500,n10=1000;
+
+	printf("enter any amount : ");
+	scanf("%d",&amount);
+
+	if(amount%n10!=0){
+	b++;
+	printf("\n%d %d notes",b,n10);
+		if(amount%n9!=0){
+		c++;
+		printf("\n%d %dnotes",c,n9);
+			if(amount%n8!=0){
+			d++;
+			printf("\n%d %dnotes",d,n8);
+				if(amount%n7!=0){
+				e++;
+				printf("\n%d %dnotes",e,n7);
+					if(amount%n6!=0){
+					f++;
+					printf("\n%d %dnotes",f,n6);
+	if(amount%n5!=0){
+	g++;
+	printf("\n%d %dnotes",g,n5);
+		if(amount%n4!=0){
+		h++;
+		printf("\n%d %dnotes",h,n4);
+			if(amount%n3!=0){
+			i++;
+			printf("\n%d %dnotes",i,n3);
+				if(amount%n2!=0){
+				j++;
+				printf("\n%d %dnotes",j,n2);
+					if(amount%n1!=0){
+					k++;
+					printf("\n%d %dnotes",k,n1);
+						else{
+						printf("\ninvalid");}
+						}}}}}}}}}}
+
+	getch();
+	return 0;
+	}

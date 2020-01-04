@@ -1,0 +1,72 @@
+#include<stdio.h>
+#include<conio.h>
+#include<dos.h>
+#include<stdlib.h>
+int main(){
+	int rem,n,r,sum=0;
+	system("cls");
+
+	printf("\nEnter any number : ");
+	scanf("%d",&n);
+
+	while(n!=0){
+		r=n%10;
+		n=n/10;
+		sum=(sum*10)+r;
+	}
+
+	while(sum!=0){
+		rem=sum%10;
+		sum=sum/10;
+
+		switch(rem){
+
+			case 1:
+				printf("\nONE\t");
+				break;
+
+			case 2:
+				printf("TWO\t");
+				break;
+
+			case 3:
+				printf("THREE\t");
+				break;
+
+			case 4:
+				printf("FOUR\t");
+				break;
+
+			case 5:
+				printf("FIVE\t");
+				break;
+
+			case 6:
+				printf("SIX\t");
+				break;
+
+			case 7:
+				printf("SEVEN\t");
+				break;
+
+			case 8:
+				printf("EIGHT\t");
+				break;
+
+			case 9:
+				printf("NINE\t");
+				break;
+
+			case 0:
+				printf("ZERO\t");
+				break;
+
+			default :
+				printf("\nError");
+				break;
+		}
+	}
+
+	getch();
+	return 0;
+}

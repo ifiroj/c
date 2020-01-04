@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+int main(){
+	clrscr();
+	float c,m,k;
+
+	printf("centimeter = ");
+	scanf("%f",&c);
+	m=100*c;
+	k=1000*c;
+	printf("meter = %f",m);
+	printf("\nkilometer = %f",k);
+
+	getch();
+	return 0;
+
+}

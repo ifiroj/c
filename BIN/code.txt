@@ -1,0 +1,3 @@
+T1	UrineTest	500
+T2	Xray		800
+T3	BloodTest	400	

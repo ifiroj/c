@@ -1,0 +1,25 @@
+#include<stdio.h>
+#include<conio.h>
+int main(){
+	int i,j,a[3][3],b[3][3];
+	clrscr();
+
+	printf("enter the elements in first matrix : ");
+	for(i=0;i<3;i++){
+		for(j=0;j<3;j++){
+			scanf("%d",&a[i][j]);
+		}
+	}
+	printf("after transposing the matrix : \n");
+	for(i=0;i<3;i++){
+		for(j=0;j<3;j++){
+			b[i][j]=a[j][i];
+			printf("\t%d\t",b[i][j]);
+		}
+		printf("\n");
+	}
+
+
+	getch();
+	return 0;
+}

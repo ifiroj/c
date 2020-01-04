@@ -1,0 +1,62 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#define ESC 27
+#define SPACE 32
+int main(){
+	int v1,v2,change=1;
+	char ch,ch1;
+	int p1=1,p2=1;
+
+	clrscr();
+	printf("\nPRESS ANY KEY TO START");
+
+	if(change%2!=0){
+		printf("\nplayer1's turn");
+
+	while(1){
+		ch=getch();
+		if(ch==ESC){
+		printf("\nTHANK YOU");
+		break;
+		}
+
+		if(change%2!=0){
+		clrscr();
+		printf("\nplayer1's turn press any key ");
+		}
+		else{
+		clrscr();
+		printf("\nplayer2's turn press any key");
+		}
+
+		if(change%2!=0){
+		printf("\nplayer1 rolls :\n");
+		}
+		else{
+		printf("\nplayer2 rolls :\n");
+		}
+		/*showing radom numbers*/
+		randomize();
+		v1=rand()%6;
+		v2=rand()%6;
+		printf("\n\t%d\n\t%d",v1,v2);
+		change++;
+		if(v1==v2){
+			if(change%2!=0){
+			printf("\nplayer2 wins %d times",p2);
+			p2++;
+			}else{
+			printf("\nplayer1 wins %d times",p1);
+			p1++;
+			}
+		}
+	}
+	}
+	else{  clrscr();
+		printf("\nplayer2's turn");
+	}
+	getch();
+	return 0;
+}
+

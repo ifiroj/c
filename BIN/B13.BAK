@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include<conio.h >
+int main(){
+	clrscr();
+	char alph;
+
+	printf("enter any alphabet : ");
+	scanf("%c",&alph);
+
+	if(alph<='A' && alph>='Z' && alph<='a' && alph>='z')
+	printf("its  alphabets");
+	else
+	printf("its not  alphabet");
+
+	getch();
+	return 0;
+
+}

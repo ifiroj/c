@@ -1,0 +1,15 @@
+/*=======================================================================
+lab		: c program to perform all the arithematic operations
+coded by	: firoj acharya
+==========================================================================*/
+#include<stdio.h>
+#include<conio.h>
+int main(){
+	int a,b,c;
+	printf("enter value of A and B :  ");
+	scanf("%d%d",&a,&b);
+	c=a+b;
+	printf("the sum of A and B is %d",c);
+	getch();
+	return 0;
+}

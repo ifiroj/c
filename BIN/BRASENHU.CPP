@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+#include<math.h>
+#include<dos.h>
+
+int main(){
+	clrscr();
+
+	int gd=DETECT,gm;
+	initgraph(&gd,&gm,"..\\bgi");
+
+	int x,y,xinc,yinc,dx,dy,x1,x2,y1,y2,step;
+
+	printf("enter first coordinates : ");
+	scanf("%d%d",&x1,&y1);
+	printf("enter second coordinates : ");
+	scanf("%d%d",&x2,&y2);
+
+	dx=abs(x2-x1);
+	dy=abs(y2-y1);
+
+	int p=2*dy-dx;
+	if(x1>x2){
+		x=x2;
+		y=y2;
+		step=x1;
+	}
+	else{
+		x=x1;
+		y=y1;
+		step=x2;
+	}
+
+	putpixel(x,y,YELLOW);
+	delay(10);
+
+	while(1){
+		x++;
+		if(p<0)
+			p=p+2*dy;
+		else{
+			y++;
+			p=p+(2*dy)-(2*dx);
+		}
+
+		putpixel(x,y,YELLOW);
+		delay(10);
+	}
+
+
+	getch();
+	return 0;
+}

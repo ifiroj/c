@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+#include<dos.h>
+
+int main (){
+	clrscr();
+	int i, gd=DETECT,gm;
+	initgraph(&gd,&gm,"..\\bgi");
+
+	setcolor(YELLOW);
+	settextstyle(1,0,5);
+	outtextxy(50,105,"Lab Test Report");
+
+	for(i=25;i<555;i++){
+		setcolor(WHITE);
+		line(25+i,170,25+i,180);
+
+	}
+	for(i=25;i<555;i++){
+		setcolor(GREEN);
+		line(25+i,170,25+i,180);
+		delay(3);
+
+		setcolor(WHITE);
+		settextstyle(SMALL_FONT,0,19);
+		outtextxy(250,190,"Loading..");
+		delay(3);
+	}
+	closegraph();
+	getch();
+	return 0;
+}

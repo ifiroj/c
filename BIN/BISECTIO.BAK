@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+
+int a0,a1,a2,a3;
+
+float f(float a){
+	return (a3*x*x*x+a2*x*x+a1*x+a0);
+}
+
+int main(){
+	clrscr();
+
+
+	float xl,xm,xu,fxl,fxm,fxu,e,em;
+
+	printf("enter coefficient a3,a2,a1,a0 ");
+	scanf("%d%d%d%d",&a3,&a2,&a1,&a0);
+
+	printf("enter two initial guesses and one error : ");
+	scanf("%d%d%d",&xl,&xu,&e);
+
+	fxl=f(xl);
+	fxu=f(xu);
+
+	while(1){
+		fxl=f(xl);
+		fxu=f(xu);
+
+		xm=(xl+xu)/2;
+		fxm=f(xm);
+
+		if((fxl*fxm)==0)
+			printf("root = %f",xm);
+
+		else if((fxm*fxl)<0)
+			xu=xm;
+		else
+			xl=xm;
+
+		em=(xu-xl)/xu;
+		if(em<e){
+			printf("root = %f",xm);
+			break;
+		}
+
+	}
+
+	getch();
+	return 0;
+}

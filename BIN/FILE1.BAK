@@ -1,0 +1,291 @@
+#include<stdio.h>
+#include<dos.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<string.h>
+
+FILE *f,*temp;
+
+struct phonebook{
+	char phone[11];
+	char name[25];
+	char address[25];
+}p;
+
+void addEntry();
+void display();
+void update();
+void search();
+void remove();
+
+int main(){
+	char option,action='y';
+
+	here:
+		system("cls");
+		printf("\nSELECT ANY OPTION\n");
+		printf("    1. Add Contact\n");
+		printf("    2. Display Contact\n");
+		printf("    3. Search\n");
+		printf("    4. Update\n");
+		printf("    5. Delete\n");
+		printf("    6. Exit");
+
+		printf("\nSelect your option : ");
+		option=getch();
+
+		while(option>=1 || option <6){
+		switch(option){
+				case '1':
+					system("cls");
+					addEntry();
+					break;
+
+				case '2':
+					system("cls");
+					display();
+					break;
+
+				case '3':
+					system("cls");
+					search();
+					break;
+
+				case '4':
+					system("cls");
+					update();
+					break;
+
+				case '5':
+					system("cls");
+					remove();
+					break;
+
+				case '6':
+					exit(0);
+
+				default:
+					system("cls");
+					printf("\nOptions available 1-5 \n");
+					break;
+			}
+
+		printf("\n\n\nDo you want to continue ? (y/n) : ");
+		scanf("%c",action);
+		action=getch();
+		if(action == 'n' || action == 'N'){
+			exit(0);
+		}
+		else{
+			goto here;
+		}
+    }
+
+	getch();
+	return 0;
+}
+
+void addEntry(){
+	    system("cls");
+	    printf("\nenter name : ");
+	    fflush(stdin);
+	    scanf("%[^\n]s",p.name);
+
+	    printf("\nenter phone number : ");
+	    fflush(stdin);
+	    scanf("%[^\n]s",p.phone);
+
+	    printf("\nenter address : ");
+	    fflush(stdin);
+	    scanf("%[^\n]s",p.address);
+
+	    f=fopen("c:\\file.txt","a");
+	    fprintf(f,"%s\t\t\t%s\t\t\t%s\n",p.name,p.phone,p.address);
+	    fclose(f);
+	    printf("\nContact Saved");
+}
+
+void display(){
+		system("cls");
+		printf("---------------------------------------------------------------------------\n");
+		puts("\t\tCONTACTS AVAILABLE");
+		printf("\nName\t\t\tNumber\t\t\tAddress\n");
+		printf("---------------------------------------------------------------------------\n");
+
+		f=fopen("c:\\file.txt","r");
+		while(!feof(f)){
+			fscanf(f,"%s %s %s",p.name,p.phone,p.address);
+
+			if(feof(f)){
+				break;
+			}
+			printf("%s\t\t\t%s\t\t\t%s\n",p.name,p.phone,p.address);
+		}
+
+		fclose(f);
+}
+
+void search(){
+	system("cls");
+	char name[25],number[11],add[25];
+	char search[25];
+	int flag=0;
+
+	printf("\nEnter name to search: ");
+	scanf("%s",search);
+	printf("\nName\tNumber\tAddress\n");
+	f=fopen("c:\\file.txt","r");
+	while(!feof(f)){
+		fscanf(f,"%s %s %s",name,number,add);
+		if(feof(f)){
+			break;
+		}
+		if(strcmp(name,search)==0){
+			flag=1;
+			break;
+		}
+	}
+		if(flag==1){
+		   while(!feof(f)){
+				fscanf(f,"%s%s%s",name,number,add);
+				if(feof(f)){
+					break;
+				}
+			}
+			printf("\n%s\t%s\t%s\n",name,number,add);
+		}
+		else{
+			system("cls");
+			printf("\nRecord not found");
+		}
+		fclose(f);
+}
+
+void update(){
+	system("cls");
+	char name[25],number[11];
+	char search[25],add[25];
+	int flag=0;
+
+	printf("\nEnter name to update : ");
+	scanf("%s",search);
+
+	f=fopen("c:\\file.txt","r");
+	while(!feof(f)){
+		fscanf(f,"%s",name);
+		if(strcmp(name,search)==0){
+			flag=1;
+			break;
+		}
+	}
+	fclose(f);
+
+	if(flag==1){
+		f=fopen("c:\\file.txt","r");
+		temp=fopen("c:\\temp.txt","a");
+		while(!feof(f)){
+			fscanf(f,"%s %s %s",name,number,add);
+			if(feof(f)){
+				break;
+			}
+
+			if(strcmp(name,search)==0){
+				printf("\nNew address : ");
+				scanf("%s",add);
+				fprintf(temp,"\n%s\t\t%s\t\t%s\n",name,number,add);
+			}
+
+			else{
+				fprintf(temp,"\n%s\t\t%s\t\t%s\n",name,number,add);
+			}
+		}
+
+		fclose(f);
+		fclose(temp);
+
+		f=fopen("c:\\file.txt","w");
+		fclose(f);
+		f=fopen("c:\\file.txt","a");
+		temp=fopen("c:\\temp.txt","r");
+
+		while(!feof(temp)){
+			fscanf(temp,"%s%s%s",name,number,add);
+			if(feof(temp)){
+				break;
+			}
+			fprintf(f,"\n%s\t\t%s\t\t%s\n",name,number,add);
+		}
+
+		fclose(f);
+		fclose(temp);
+		temp=fopen("c:\\temp.txt","w");
+		fclose(temp);
+
+		printf("\nRecord updated");
+		delay(345);
+	}
+
+	else{
+		printf("\nRecord not found");
+	}
+}
+
+void remove(){
+	char name[25],number[11],add[25];
+	char search[25];
+	int flag=0;
+
+	puts("\nEnter name to delete : ");
+	scanf("%s",search);
+	f=fopen("c:\\file.txt","r");
+	while(!feof(f)){
+		fscanf(f,"%s %s %s",name,number,add);
+			if(strcmp(name,search)==0){
+				flag=1;
+				break;
+			}
+	}
+	fclose(f);
+
+	if(flag==1){
+		f=fopen("c:\\file.txt","r");
+		temp=fopen("c:\\temp.txt","a");
+
+			while(!feof(f)){
+				fscanf(f,"%s %s %s",name,number,add);
+				if(feof(f)){
+					break;
+				}
+				if(strcmp(name,search)==0){
+				}
+				else{
+					fprintf(temp,"%s\t\t%s\t\t%s\n",name,number,add);
+				}
+			}
+			fclose(f);
+			fclose(temp);
+			f=fopen("c:\\file.txt","w");
+			fclose(f);
+			f=fopen("c:\\file.txt","a");
+			temp=fopen("c:\\temp.txt","r");
+
+			while(!feof(temp)){
+				fscanf(temp,"%s%s%s",name,number,add);
+				if(feof(temp)){
+					break;
+				}
+				fprintf(f,"%s\t\t%s\t\t%s\n",name,number,add);
+			}
+			fclose(f);
+			fclose(temp);
+			temp=fopen("c:\\temp.txt","w");
+			fclose(temp);
+			puts("\nRecord deleted.");
+			delay(345);
+	}
+	else{
+		printf("\nRecord not found.");
+		delay(345);
+	}
+
+}
